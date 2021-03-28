@@ -1,27 +1,36 @@
 <template>
-  <b-navbar>
+  <b-navbar shadow spaced>
     <template #brand>
-      <b-navbar-item tag="router-link" :to="{ path: '/profile' }">
+      <b-navbar-item>
         <img
-          src="https://raw.githubusercontent.com/buefy/buefy/dev/static/img/buefy-logo.png"
-          alt="Lightweight UI components for Vue.js based on Bulma"
+          height="200"
+          width="100"
+          src="https://lh3.googleusercontent.com/proxy/8ulJvMnsnpM9xsNsrZ0QN4Xd3AgQR9Sx9NoBmNoN_hsLjjUgz-FPh8sORB2nGDm6Vxde2yhMc3GRrTGAk2HhtUUuUrcfsObqVXqe1TARikcT01-q6FJEJOT4U2bMzaLL00XGYjQ"
+          alt="RedBox"
         />
       </b-navbar-item>
     </template>
     <template #start>
-      <b-navbar-item href="#"> Home </b-navbar-item>
-      <b-navbar-item href="#"> Documentation </b-navbar-item>
-      <b-navbar-dropdown label="Info">
-        <b-navbar-item href="#"> About </b-navbar-item>
-        <b-navbar-item href="#"> Contact </b-navbar-item>
-      </b-navbar-dropdown>
+      <b-navbar-item
+        :to="navLink.route"
+        v-for="(navLink, index) in menu"
+        :key="index"
+      >
+        {{ navLink.title }}
+      </b-navbar-item>
     </template>
   </b-navbar>
 </template>
 
 <script>
+import NavBarHelper from "/src/helpers/NavbarHelper";
 export default {
   name: "NavBarLayout",
+  computed: {
+    menu() {
+      return NavBarHelper;
+    },
+  },
 };
 </script>
 
